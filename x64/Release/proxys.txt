@@ -1,0 +1,5 @@
+206.41.168.145:6810:kuymaks1:kuymaks1
+206.41.168.93:6758:kuymaks1:kuymaks1
+206.41.168.16:6681:kuymaks1:kuymaks1
+206.41.168.39:6704:kuymaks1:kuymaks1
+206.41.168.177:6842:kuymaks1:kuymaks1

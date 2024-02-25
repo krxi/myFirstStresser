@@ -1,0 +1,34 @@
+﻿  tstress.cpp
+  Generating code
+  2 of 593 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    11 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  tstress.vcxproj -> C:\Users\klns\Desktop\Project[CPP]\tstress\x64\Release\tstress.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
+  Set-Content : Could not find a part of the path 
+  'C:\Windows\System32\WindowsPowerShell\v1.0\x64\Release\vcpkg.applocal.log'.
+  At C:\Users\klns\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:12 char:5
+  +     Set-Content -Path $copiedFilesLog -Value "" -Encoding UTF8
+  +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : ObjectNotFound: (C:\Windows\Syst...kg.applocal.log:String) [Set-Content], DirectoryNotFo 
+     undException
+      + FullyQualifiedErrorId : GetContentWriterDirectoryNotFoundError,Microsoft.PowerShell.Commands.SetContentCommand
+   
+  Split-Path : Cannot bind argument to parameter 'Path' because it is null.
+  At C:\Users\klns\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:76 char:39
+  +     $baseTargetBinaryDir = Split-Path $baseBinaryPath -parent
+  +                                       ~~~~~~~~~~~~~~~
+      + CategoryInfo          : InvalidData: (:) [Split-Path], ParameterBindingValidationException
+      + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,Microsoft.PowerShell.Commands.SplitPathCo 
+     mmand
+   
+  Split-Path : Cannot bind argument to parameter 'Path' because it is null.
+  At C:\Users\klns\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:94 char:35
+  +     $targetBinaryDir = Split-Path $targetBinaryPath -parent
+  +                                   ~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : InvalidData: (:) [Split-Path], ParameterBindingValidationException
+      + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,Microsoft.PowerShell.Commands.SplitPathCo 
+     mmand
+   
