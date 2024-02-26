@@ -5,10 +5,11 @@
 #include <vector>
 #include <chrono>
 #include <random>
+#include <iostream>
 #include <stdexcept>
 #include <fstream>
 
-
+using namespace std;
 
 
 //random gen func
@@ -135,7 +136,7 @@ int main(void)
     ifstream file("proxys.txt");
 
     //proxy.txt per line
-    std::string line;
+    string line;
 
     //IMPORTANT proxies vec
     std::vector<std::pair<string, string>> proxies;
@@ -163,8 +164,8 @@ int main(void)
         }
         else {
             // Writing values to vector
-            std::string ipport = temporary[0] + ":" + temporary[1];
-            std::string userpass = temporary[2] + ":" + temporary[3];
+            string ipport = temporary[0] + ":" + temporary[1];
+            string userpass = temporary[2] + ":" + temporary[3];
 
             //Adding values to vector
             proxies.push_back(std::pair(ipport, userpass));
