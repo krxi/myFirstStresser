@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <fstream>
 
-using namespace std;
+
 
 
 //random gen func
