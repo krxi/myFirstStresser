@@ -5,7 +5,6 @@
 #include <vector>
 #include <chrono>
 #include <random>
-#include <iostream>
 #include <stdexcept>
 #include <fstream>
 
@@ -136,7 +135,7 @@ int main(void)
     ifstream file("proxys.txt");
 
     //proxy.txt per line
-    string line;
+    std::string line;
 
     //IMPORTANT proxies vec
     std::vector<std::pair<string, string>> proxies;
@@ -164,8 +163,8 @@ int main(void)
         }
         else {
             // Writing values to vector
-            string ipport = temporary[0] + ":" + temporary[1];
-            string userpass = temporary[2] + ":" + temporary[3];
+            std::string ipport = temporary[0] + ":" + temporary[1];
+            std::string userpass = temporary[2] + ":" + temporary[3];
 
             //Adding values to vector
             proxies.push_back(std::pair(ipport, userpass));
