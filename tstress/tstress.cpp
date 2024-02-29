@@ -10,7 +10,69 @@
 #include <fstream>
 
 using namespace std;
+// header dosyasına eklenicek daha temiz olucak.
+std::string solveCaptcha(const std::string& captchaSiteKey, const std::string& pageUrl, const std::string& apiKey) {
+    std::string apiUrl = "http://2captcha.com/in.php?key=" + apiKey + "&method=userrecaptcha&googlekey=" + captchaSiteKey + "&pageurl=" + pageUrl;
+    CURL* curl = curl_easy_init();
+    std::string response;
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, [](void* buffer, size_t size, size_t nmemb, void* userp) -> size_t {
+            static_cast<std::string*>(userp)->append(static_cast<char*>(buffer), size * nmemb);
+            return size * nmemb;
+        });
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+        CURLcode res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            std::cerr << "CURL request failed: " << curl_easy_strerror(res) << std::endl;
+        }
+        curl_easy_cleanup(curl);
+    } else {
+        std::cerr << "Failed to initialize CURL" << std::endl;
+        return "";
+    }
 
+    if (response.find("OK|") == std::string::npos) {
+        std::cerr << "Failed to submit captcha to 2Captcha: " << response << std::endl;
+        return "";
+    }
+
+    std::string captchaId = response.substr(3);
+
+    response.clear();
+    apiUrl = "http://2captcha.com/res.php?key=" + apiKey + "&action=get&id=" + captchaId;
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::seconds(5)); // 5 saniye bekleyin
+        CURL* curl = curl_easy_init();
+        if (curl) {
+            curl_easy_setopt(curl, CURLOPT_URL, apiUrl.c_str());
+            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, [](void* buffer, size_t size, size_t nmemb, void* userp) -> size_t {
+                static_cast<std::string*>(userp)->append(static_cast<char*>(buffer), size * nmemb);
+                return size * nmemb;
+            });
+            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+            CURLcode res = curl_easy_perform(curl);
+            if (res != CURLE_OK) {
+                std::cerr << "CURL request failed: " << curl_easy_strerror(res) << std::endl;
+                continue;
+            }
+            curl_easy_cleanup(curl);
+        } else {
+            std::cerr << "Failed to initialize CURL" << std::endl;
+            continue;
+        }
+        if (response.find("OK|") != std::string::npos) {
+            break;
+        } else if (response.find("CAPCHA_NOT_READY") != std::string::npos) {
+            continue;
+        } else {
+            std::cerr << "Failed to get captcha result from 2Captcha: " << response << std::endl;
+            return "";
+        }
+    }
+    std::string captchaResult = response.substr(3);
+    return captchaResult;
+}
 
 //random gen func
 static std::mt19937 mt(std::random_device{}());
