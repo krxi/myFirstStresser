@@ -193,9 +193,15 @@ std::string cUrl(std::pair<string, string> proxy,std::string proxy_type,std::str
 
 int main(void)
 {   
-
+ std::string r1 = cUrl(proxies[0], "http", "https://2captcha.com/demo/cloudflare-turnstile");
     //proxy path
     ifstream file("proxys.txt");
+    std::string captchaSiteKey = ""; // CAPTCHA API KEY
+    std::string pageUrl = r1; // target url
+    std::string apiKey = "captcha"; // 2captcha api key
+
+    // Captcha çözme işlemini gerçekleştir
+    std::string captchaResult = solveCaptcha(captchaSiteKey, pageUrl, apiKey);
 
     //proxy.txt per line
     string line;
@@ -241,7 +247,7 @@ int main(void)
 
     //test func
     retry:
-    std::string r1 = cUrl(proxies[0], "http", "https://2captcha.com/demo/cloudflare-turnstile");
+   
     if (r1.find("Just a moment") != std::string::npos) {
         // Api needed for solve captcha
         Sleep(1000);// mimic waiting process
