@@ -20,6 +20,12 @@ const std::vector<std::string> userAgents = {
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0"
 };
+// Rastgele bir useragent seçiyoruz aşko
+std::string getRandomUserAgent() {
+    static std::mt19937 mt(static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count()));
+    std::uniform_int_distribution<size_t> dist(0, userAgents.size() - 1);
+    return userAgents[dist(mt)];
+}
 // bitti userler amk
 
 
