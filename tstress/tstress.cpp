@@ -142,7 +142,7 @@ std::string cUrl(std::pair<string, string> proxy,std::string proxy_type,std::str
         headers = curl_slist_append(headers, "Sec-Gpc: 1");
         headers = curl_slist_append(headers, "DNT: 1");
         headers = curl_slist_append(headers, "Upgrade-Insecure-Requests:: 1");
-        headers = curl_slist_append(headers, "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
+        headers = curl_slist_append(headers, std::string userAgent = getRandomUserAgent());
 
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);//https
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);//httpss
