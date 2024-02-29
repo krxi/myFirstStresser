@@ -10,6 +10,19 @@
 #include <fstream>
 
 using namespace std;
+
+
+// user agentlar omfg ekstra güvenlik
+const std::vector<std::string> userAgents = {
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0"
+};
+// bitti userler amk
+
+
 // header dosyasına eklenicek daha temiz olucak.
 std::string solveCaptcha(const std::string& captchaSiteKey, const std::string& pageUrl, const std::string& apiKey) {
     std::string apiUrl = "http://2captcha.com/in.php?key=" + apiKey + "&method=userrecaptcha&googlekey=" + captchaSiteKey + "&pageurl=" + pageUrl;
