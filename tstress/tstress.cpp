@@ -142,7 +142,8 @@ std::string cUrl(std::pair<string, string> proxy,std::string proxy_type,std::str
         headers = curl_slist_append(headers, "Sec-Gpc: 1");
         headers = curl_slist_append(headers, "DNT: 1");
         headers = curl_slist_append(headers, "Upgrade-Insecure-Requests:: 1");
-        headers = curl_slist_append(headers, userAgent);
+        headers = curl_slist_append(headers, ("User-Agent: " + userAgent).c_str());
+
 
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);//https
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);//httpss
